@@ -73,7 +73,6 @@ Feel free to play around with the code and fork this Repl at [https://repl.it/@v
 
 ## Who's Using Ink?
 
-- [Codex](https://github.com/openai/codex) - An agentic coding tool made by OpenAI.
 - [Claude Code](https://github.com/anthropics/claude-code) - An agentic coding tool made by Anthropic.
 - [Gemini CLI](https://github.com/google-gemini/gemini-cli) - An agentic coding tool made by Google.
 - [GitHub Copilot for CLI](https://githubnext.com/projects/copilot-cli) - Just say what you want the shell to do.
@@ -123,6 +122,7 @@ Feel free to play around with the code and fork this Repl at [https://repl.it/@v
 - [tweakcc](https://github.com/Piebald-AI/tweakcc) - Customize your Claude Code styling.
 - [argonaut](https://github.com/darksworm/argonaut) - Manage Argo CD resources.
 - [Qodo Command](https://github.com/qodo-ai/command) - Build, run, and manage AI agents.
+- [Nanocoder](https://github.com/nano-collective/nanocoder) - A community-built, local-first AI coding agent with multi-provider support.
 
 *(PRs welcome. Append new entries at the end. Repos must have 100+ stars and showcase Ink beyond a basic list picker.)*
 
@@ -2009,6 +2009,13 @@ Default: `process.stdin`
 
 Input stream where app will listen for input.
 
+###### stderr
+
+Type: `stream.Writable`\
+Default: `process.stderr`
+
+Error stream.
+
 ###### exitOnCtrlC
 
 Type: `boolean`\
@@ -2027,6 +2034,13 @@ When any of the `console.*` methods are called (like `console.log()`), Ink inter
 That way, both are visible and don't overlap each other.
 
 This functionality is powered by [patch-console](https://github.com/vadimdemedes/patch-console), so if you need to disable Ink's interception of output but want to build something custom, you can use that.
+
+###### onRender
+
+Type: `({renderTime: number}) => void`\
+Default: `undefined`
+
+Runs the given callback after each render and re-render with a metrics object.
 
 ###### debug
 

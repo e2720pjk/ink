@@ -1,6 +1,6 @@
 {
 	"name": "ink",
-	"version": "6.3.1",
+	"version": "6.4.0",
 	"description": "React for CLI",
 	"license": "MIT",
 	"repository": "vadimdemedes/ink",
@@ -43,7 +43,7 @@
 		"text"
 	],
 	"dependencies": {
-		"@alcalzone/ansi-tokenize": "^0.2.0",
+		"@alcalzone/ansi-tokenize": "^0.2.1",
 		"ansi-escapes": "^7.0.0",
 		"ansi-styles": "^6.2.1",
 		"auto-bind": "^5.0.1",

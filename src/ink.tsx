@@ -20,6 +20,16 @@ import {accessibilityContext as AccessibilityContext} from './components/Accessi
 
 const noop = () => {};
 
+/**
+Performance metrics for a render operation.
+*/
+export type RenderMetrics = {
+	/**
+	Time spent rendering in milliseconds.
+	*/
+	renderTime: number;
+};
+
 export type Options = {
 	stdout: NodeJS.WriteStream;
 	stdin: NodeJS.ReadStream;
@@ -27,6 +37,7 @@ export type Options = {
 	debug: boolean;
 	exitOnCtrlC: boolean;
 	patchConsole: boolean;
+	onRender?: (metrics: RenderMetrics) => void;
 	isScreenReaderEnabled?: boolean;
 	waitUntilExit?: () => Promise<void>;
 	maxFps?: number;
@@ -166,10 +177,13 @@ export default class Ink {
 			return;
 		}
 
+		const startTime = performance.now();
 		const {output, outputHeight, staticOutput} = render(
 			this.rootNode,
 			this.isScreenReaderEnabled,
 		);
+
+		this.options.onRender?.({renderTime: performance.now() - startTime});
 
 		// If <Static> output isn't empty, it means new children have been added to it
 		const hasStaticOutput = staticOutput && staticOutput !== '\n';
